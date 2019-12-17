@@ -5,7 +5,7 @@ steps:
   args: ['go', 'test', 'src/', '-v']
 
 - id: "Criando Imagem no Container Registry"
-- name: 'gcr.io/cloud-builders/docker'
+  name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
   - '--build-arg'
