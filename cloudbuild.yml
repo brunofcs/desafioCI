@@ -2,4 +2,19 @@ steps:
 
 - id: "Rodando Testes"
   name: 'gcr.io/cloud-builders/go'
-  args: ['go', 'test', 'src/' '-v']
+  args: ['go', 'test', 'src/', '-v']
+
+- id: "Criando Imagem no Container Registry"
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--build-arg'
+  - 'version=1.0'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/soma:latest'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/soma:1.0'
+  - '.'
+images:
+- 'gcr.io/$PROJECT_ID/soma:latest'
+- 'gcr.io/$PROJECT_ID/soma:1.0'
